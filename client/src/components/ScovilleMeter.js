@@ -2,40 +2,26 @@ import React, { Component } from 'react'
 import injectSheet from 'react-jss';
 
 import Pepper from '../images/pepper.svg';
-import level_01 from '../images/01.svg';
-import level_02 from '../images/02.svg';
-import level_03 from '../images/03.svg';
-import level_04 from '../images/04.svg';
-import level_05 from '../images/05.svg';
-import level_06 from '../images/06.svg';
-import level_07 from '../images/07.svg';
-import level_08 from '../images/08.svg';
-import level_09 from '../images/09.svg';
-import level_10 from '../images/10.svg';
-import level_11 from '../images/11.svg';
 import fire from '../images/fire.svg';
 
-const levels = [
-  level_01,
-  level_02,
-  level_03,
-  level_04,
-  level_05,
-  level_06,
-  level_07,
-  level_08,
-  level_09,
-  level_10,
-  level_11,
-  fire 
-];
+const levels = [];
+//Dynamically sets levels in an array
+for (let i = 1; i <= 11; i++) {
+  const image = require(`../images/${i.toString().padStart(2, '0')}.svg`);
+  levels.push(image);
+}
+levels.push(fire);
 
 const styles = {
   
   meter: {
-    backgroundColor: 'red', 
-    width: '200px',
-    height: '200px' 
+    position: 'relative',
+    width: '30%'
+  },
+  level: {
+    position: 'absolute',
+    width: '100%',
+    height: 'auto'
   }
 };
 
@@ -44,10 +30,11 @@ class ScovilleMeter extends Component {
     const { classes } = this.props;
   return (
     <div className={classes.meter}>
-      <img src={Pepper} alt="pepper-outline"/>
+      <img src={Pepper} alt="pepper-outline" className={classes.level}/>
       {
-        levels.map(level => <img key={level} src ={level} alt="level"/>)
-
+        levels.map(level => (
+          <img key={level} src ={level} alt="level" className={classes.level} />
+        ))
       }
     <h1>Scoville Meter!</h1>
     </div>
