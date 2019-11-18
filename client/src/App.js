@@ -4,7 +4,7 @@ import ScovilleMeter from './components/ScovilleMeter';
 function App() {
   return (
     <div>
-      <ScovilleMeter scovilles={100000} />
+      <ScovilleMeter scovilles={1000003} height={600}/>
     </div>
   );
 }
