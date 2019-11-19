@@ -39,8 +39,13 @@ const styles = {
     fontFamily: '\'Allerta Stencil\', sans-serif',
     fontSize: '2em',
     animation: 'neon-red 1.5s ease-in-out infinite alternate',
-    
+    margin: '0'
+
+  },
+  textYellow: {
+    color: 'yellow'
   }
+
 };
 
 
@@ -109,7 +114,11 @@ const ScovilleMeter = ({ classes, scovilles, height }) => {
           ))
         }
       </div>
-      <p className={classes.caption}>{new Intl.NumberFormat('en-US').format(scovilles)}</p>
+      <p className={classes.caption}>
+      <span className={classes.textYellow}>Scoville Units</span>
+      <br />
+        {new Intl.NumberFormat('en-US').format(scovilles)}
+      </p>
     </div>
   );
 };
