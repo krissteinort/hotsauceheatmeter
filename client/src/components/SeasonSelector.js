@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import injectSheet from 'react-jss';
 import PropTypes from 'prop-types';
-
+import { withRouter } from 'react-router-dom';
 
 
 const seasons = [];
@@ -14,7 +14,9 @@ for (let i = 1; i <= 9; i += 1) {
 
 const styles = {
   sideBar: {
-    width: '250px'
+    height: '100%',
+    width: '250px',
+    overFlowY: 'scroll',
   },
   seasonButton: {
     color: 'yellow',
@@ -35,12 +37,16 @@ const styles = {
 };
 
 
-const SeasonSelector = ({ classes }) => {
+const SeasonSelector = ({ classes, history }) => {
   return (
     <div className={classes.sideBar}>
       {
         seasons.map((_, i) => (
-          <div key={i} className={classes.seasonButton}>
+          <div 
+            key={i} 
+            className={classes.seasonButton}
+            onClick={() => history.push(`/seasons/${i + 1}`)}
+            >
             Season 
             {' '} 
             {i +1}
@@ -55,4 +61,4 @@ SeasonSelector.propTypes = {
   classes: PropTypes.shape({}).isRequired
 };
 
-export default injectSheet(styles)(SeasonSelector);
+export default withRouter(injectSheet(styles)(SeasonSelector));
