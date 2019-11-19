@@ -34,14 +34,15 @@ const styles = {
     animation: 'blinker 1.5s ease-in infinite'
   },
   caption: {
-    color: 'red',
+    color: '#f22e18',
     textAlign: 'center',
+    fontFamily: '\'Allerta Stencil\', sans-serif',
+    fontSize: '2em',
+    animation: 'neon-red 1.5s ease-in-out infinite alternate',
+    
   }
-
 };
 
-//min 450 
-//max 2000000
 
 //level 1 0 - 2200
 //level 2 2201 - 4000
@@ -108,7 +109,7 @@ const ScovilleMeter = ({ classes, scovilles, height }) => {
           ))
         }
       </div>
-<h3 className={classes.caption}>{scovilles}</h3>
+      <p className={classes.caption}>{new Intl.NumberFormat('en-US').format(scovilles)}</p>
     </div>
   );
 };
