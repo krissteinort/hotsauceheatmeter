@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import injectSheet from 'react-jss';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Switch, Route } from 'react-router-dom';
+
+import SauceViewer from './SauceViewer';
 
 const styles = {
   container: {
@@ -20,12 +22,12 @@ const styles = {
     justifyContent: 'center',
     '& img': {
       height: '200px',
-      cursor: 'pointer'
+      cursor: 'pointer',
     }
   }
 };
 
-const SeasonViewer = ({ classes, match }) => {
+const SeasonViewer = ({ classes, match, history }) => {
   const { season } = match.params;
   const [sauces, setSauces] = useState([]);
 
@@ -37,10 +39,25 @@ const SeasonViewer = ({ classes, match }) => {
   , [season]);
   return (
     <div className={classes.container}>
-      <div className={classes.selectedSauce} />
+      <div className={classes.selectedSauce}>
+        <Switch> 
+          <Route 
+            exact 
+            path={`/seasons/${season}/sauces/:sauce_id`} 
+            component={SauceViewer}
+          />
+        </Switch>
+      </div>
       <div className={classes.bottles}>
         {
-          sauces.map(sauce => <img key={sauce.id} src={sauce.img_url} alt={sauce.name} />)
+          sauces.map(sauce => (
+          <img 
+            key={sauce.id} 
+            src={sauce.img_url} 
+            alt={sauce.name}
+            onClick={() => history.push(`/seasons/${season}/sauces/${sauce.id}`)} 
+          />
+          ))
         }
       </div>
     </div>
@@ -49,6 +66,7 @@ const SeasonViewer = ({ classes, match }) => {
 
 SeasonViewer.propTypes = {
   classes: PropTypes.shape({}).isRequired,
+  history: PropTypes.shape({}).isRequired,
   match: PropTypes.shape({}).isRequired,
 };
 

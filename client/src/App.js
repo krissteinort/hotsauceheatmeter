@@ -15,7 +15,8 @@ function App() {
     >
       <SeasonSelector />
       <Switch>
-          <Route path="/seasons/:season" component={SeasonViewer} />
+          <Route exact path="/seasons/:season" component={SeasonViewer} />
+          <Route exact path="/seasons/:season/sauces/:sauce_id" component={SeasonViewer} />
         </Switch>
     </div>
   );
