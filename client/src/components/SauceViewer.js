@@ -14,20 +14,26 @@ const styles = {
 
 };
 
-const SauceViewer = ({ classes, match }) => {
-  const { sauce_id } = match.params;
-  console.log('sauce_id,', sauce_id);
-  
+const SauceViewer = ({ classes, sauce }) => {
+
   return (
     <div className={classes.container}>
-      <h3>You selected a sauce!</h3>
+      {
+        sauce
+          ? (
+            <h3>{sauce.name}</h3>
+          )
+          : (
+            <h3>Sauce not found!</h3>
+          )
+
+      }
     </div>
   );
 };
 
 SauceViewer.propTypes = {
   classes: PropTypes.shape({}).isRequired,
-  match: PropTypes.shape({}).isRequired,
 };
 
-export default withRouter(injectSheet(styles)(SauceViewer));
+export default injectSheet(styles)(SauceViewer);

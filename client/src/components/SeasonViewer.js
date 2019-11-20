@@ -20,6 +20,9 @@ const styles = {
   bottles: {
     display: 'flex',
     justifyContent: 'center',
+    flexWrap: 'wrap',
+    maxHeight: '400px',
+    overflow: 'auto',
     '& img': {
       height: '200px',
       cursor: 'pointer',
@@ -28,23 +31,29 @@ const styles = {
 };
 
 const SeasonViewer = ({ classes, match, history }) => {
-  const { season } = match.params;
+  const { season, sauce_id } = match.params;
   const [sauces, setSauces] = useState([]);
-
+  const [selectedSauce, setSelectedSauce] = useState(null);
   useEffect(() => {
     // eslint-disable-next-line
       const sauces = require(`../sauces/season_${season}.json`);
       setSauces(sauces);
+      const { sauce_id } = match.params;
+      if (sauce_id) {
+    // eslint-disable-next-line
+        setSelectedSauce(sauces.find(sauce => sauce.id == sauce_id));
+      }
     }
-  , [season]);
+  , [season, match.params]);
   return (
     <div className={classes.container}>
       <div className={classes.selectedSauce}>
         <Switch> 
           <Route 
-            exact 
-            path={`/seasons/${season}/sauces/:sauce_id`} 
-            component={SauceViewer}
+            path="*/sauces/:sauce_id"
+            component={(props) => (
+              <SauceViewer {...props} sauce={selectedSauce || null} />
+            )}
           />
         </Switch>
       </div>
