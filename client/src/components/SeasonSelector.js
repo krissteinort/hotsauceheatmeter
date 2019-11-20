@@ -15,8 +15,8 @@ for (let i = 1; i <= 9; i += 1) {
 const styles = {
   sideBar: {
     height: '100%',
-    width: '250px',
-    overFlowY: 'scroll',
+    minWidth: '250px',
+    overflowY: 'scroll',
   },
   seasonButton: {
     color: 'yellow',

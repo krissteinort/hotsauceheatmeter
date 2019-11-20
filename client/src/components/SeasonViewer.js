@@ -5,7 +5,23 @@ import { withRouter } from 'react-router-dom';
 
 const styles = {
   container: {
+    width: '100%',
+    height: '100%',    
+    display: 'flex',
+    flexDirection: 'column',
     color: 'yellow',
+  },
+  selectedSauce: {
+    height: '70%',
+    width: '100%',
+  },
+  bottles: {
+    display: 'flex',
+    justifyContent: 'center',
+    '& img': {
+      height: '200px',
+      cursor: 'pointer'
+    }
   }
 };
 
@@ -21,10 +37,10 @@ const SeasonViewer = ({ classes, match }) => {
   , [season]);
   return (
     <div className={classes.container}>
-      <div></div>
-      <div>
+      <div className={classes.selectedSauce} />
+      <div className={classes.bottles}>
         {
-          sauces.map(sauce => <p>{sauce.name}</p>)
+          sauces.map(sauce => <img key={sauce.id} src={sauce.img_url} alt={sauce.name} />)
         }
       </div>
     </div>
