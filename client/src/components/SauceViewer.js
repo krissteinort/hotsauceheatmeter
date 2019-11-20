@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import injectSheet from 'react-jss';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
+
+import ScovilleMeter from './ScovilleMeter';
 
 const styles = {
   container: {
@@ -21,7 +22,12 @@ const SauceViewer = ({ classes, sauce }) => {
       {
         sauce
           ? (
-            <h3>{sauce.name}</h3>
+            <div>
+              <ScovilleMeter height={600} scovilles={sauce.scovilles}/>
+              <div>
+                <img src={sauce.img_url} alt={sauce.name}></img>
+              </div>
+            </div>
           )
           : (
             <h3>Sauce not found!</h3>
@@ -34,6 +40,7 @@ const SauceViewer = ({ classes, sauce }) => {
 
 SauceViewer.propTypes = {
   classes: PropTypes.shape({}).isRequired,
+  sauce:  PropTypes.shape({}).isRequired,
 };
 
 export default injectSheet(styles)(SauceViewer);

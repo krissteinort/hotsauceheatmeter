@@ -24,14 +24,14 @@ const styles = {
     maxHeight: '400px',
     overflow: 'auto',
     '& img': {
-      height: '200px',
+      height: '275px',
       cursor: 'pointer',
     }
   }
 };
 
 const SeasonViewer = ({ classes, match, history }) => {
-  const { season, sauce_id } = match.params;
+  const { season } = match.params;
   const [sauces, setSauces] = useState([]);
   const [selectedSauce, setSelectedSauce] = useState(null);
   useEffect(() => {

@@ -80,7 +80,7 @@ const ScovilleMeter = ({ classes, scovilles, height }) => {
       setTimeout(() => {
         const levelsToShow = allLevels.slice(0, displayedLevels.length + 1);
         setDisplayedLevels(levelsToShow)
-      }, 200);
+      }, 150);
     }
   });
   //useEffect(() => {
