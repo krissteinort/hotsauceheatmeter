@@ -12,9 +12,19 @@ body {
 
 }
 
+h1 {
+  color: red;
+  text-align: center;
+  text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ff0000, 0 0 70px #ff0000, 0 0 80px #ff0000, 0 0 100px #ff0000, 0 0 150px #ff0000;
+  font-size: 4em;
+  display: grid;
+}
+
 #root {
   width: 100%;
   height: 100%;
+  align-content: right;
+  z-index: 0;
 }
 
 @keyframes blinker {

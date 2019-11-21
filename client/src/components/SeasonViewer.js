@@ -47,6 +47,7 @@ const SeasonViewer = ({ classes, match, history }) => {
   , [season, match.params]);
   return (
     <div className={classes.container}>
+
       <div className={classes.selectedSauce}>
         <Switch> 
           <Route 
