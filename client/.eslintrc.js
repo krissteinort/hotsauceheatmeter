@@ -22,5 +22,6 @@ module.exports = {
   ],
   rules: {
     camelcase: 0,
+    'react/jsx-filename-extension': 0,
   },
 };
